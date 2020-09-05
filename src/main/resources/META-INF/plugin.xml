@@ -9,11 +9,15 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.btnewton.intellijdevplugin.services.WorkSessionService"/>
+        <applicationService serviceImplementation="com.github.btnewton.intellijdevplugin.services.AppSettingsState"/>
+        <applicationConfigurable parentId="tools" instance="com.github.btnewton.intellijdevplugin.services.AppSettingsConfigurable"
+                                 id="com.github.btnewton.intellijdevplugin.services.AppSettingsConfigurable"
+                                 displayName="Work Session"/>
     </extensions>
 
     <actions>
-        <action id="btnewton-dev-action" class="com.github.btnewton.intellijdevplugin.services.ResetWorkSessionAction" text="Test Action: Brandt"
-                description="Run test action brandt">
+        <action id="btnewton-dev-action" class="com.github.btnewton.intellijdevplugin.services.ResetWorkSessionAction" text="Work Session Restart"
+                description="Restart your work session">
         </action>
     </actions>
 

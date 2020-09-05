@@ -4,7 +4,9 @@ import com.intellij.notification.Notification
 import com.intellij.notification.NotificationDisplayType
 import com.intellij.notification.NotificationGroup
 import com.intellij.notification.NotificationType
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.components.Service
+import com.intellij.openapi.components.service
 import com.intellij.openapi.ui.DialogWrapper
 import java.awt.BorderLayout
 import java.awt.Dimension
@@ -20,11 +22,9 @@ class WorkSessionService {
     private val NOTIFICATION_GROUP = NotificationGroup("Break Time Group", NotificationDisplayType.BALLOON, true)
 
     companion object {
-        val workTimer = LazyTimer(Duration.ofMinutes(45))
-        val extensionTime = Duration.ofMinutes(5)
-        // let user save work and stuff
-        val gracePeriodTimer = LazyTimer(Duration.ofSeconds(30))
-        val breakTimer = LazyTimer(Duration.ofMinutes(5))
+        val workTimer = LazyTimer()
+        val gracePeriodTimer = LazyTimer()
+        val breakTimer = LazyTimer()
     }
 
     fun workDone() {
@@ -52,19 +52,22 @@ class WorkSessionService {
     fun resetWorkTimer() {
         endBreakSession()
         notify("Work session started.")
-        workTimer.start()
+        val settings = service<AppSettingsState>()
+        workTimer.start(Duration.ofMinutes(settings.workSessionTimeMinutes.toLong()))
     }
 
     fun tellUserWorkSessionDone() {
         val d = TakeABreakDialog()
         if (d.showAndGet()) {
             if (d.exitCode == 5) {
-                notify("You have ${extensionTime.toMinutes()} minutes to wrap up")
-                workTimer.extendTime(extensionTime)
+                val settings = service<AppSettingsState>()
+                notify("You have ${settings.extensionTimeMinutes} minutes to wrap up")
+                workTimer.extendTime(Duration.ofMinutes(settings.extensionTimeMinutes.toLong()))
             } else {
                 workTimer.cancel()
-                gracePeriodTimer.start()
-                breakTimer.start()
+                val settings = service<AppSettingsState>()
+                gracePeriodTimer.start(Duration.ofSeconds(settings.gracePeriodSeconds.toLong()))
+                breakTimer.start(Duration.ofMinutes(settings.breakDurationMinutes.toLong()))
             }
         }
     }
@@ -85,16 +88,17 @@ class WorkSessionService {
         }
 
         override fun createActions(): Array<Action> {
-            val keepWorking = DialogWrapperExitAction("5 more minutes", 5)
+            val settings = service<AppSettingsState>()
+            val keepWorking = DialogWrapperExitAction("${settings.extensionTimeMinutes} more minutes", 5)
             val stretch = DialogWrapperExitAction("Stretch time!", 0)
             val coffee = DialogWrapperExitAction("Coffee Break!", 0)
-            val stroll = DialogWrapperExitAction("Goin' for a stroll!", 0)
-            stroll.putValue(DEFAULT_ACTION, true)
+            val walk = DialogWrapperExitAction("Goin' for a walk!", 0)
+            walk.putValue(DEFAULT_ACTION, true)
             return arrayOf(
                     keepWorking,
                     stretch,
                     coffee,
-                    stroll,
+                    walk,
             )
         }
 
@@ -105,11 +109,11 @@ class WorkSessionService {
     }
 }
 
-class LazyTimer(val defaultTime: Duration) {
+class LazyTimer {
     private var doneTimeMs: Long? = null
     private var startTime: LocalDateTime? = null
 
-    fun start(minutes: Duration = defaultTime) {
+    fun start(minutes: Duration) {
         startTime = LocalDateTime.now()
         extendTime(minutes)
     }
