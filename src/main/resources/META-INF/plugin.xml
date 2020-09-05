@@ -8,12 +8,29 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.btnewton.intellijdevplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.btnewton.intellijdevplugin.services.MyProjectService"/>
+        <applicationService serviceImplementation="com.github.btnewton.intellijdevplugin.services.WorkSessionService"/>
     </extensions>
 
+    <actions>
+        <action id="btnewton-dev-action" class="com.github.btnewton.intellijdevplugin.services.ResetWorkSessionAction" text="Test Action: Brandt"
+                description="Run test action brandt">
+        </action>
+    </actions>
+
+    <applicationListeners>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener"
+                  topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    </applicationListeners>
+
     <projectListeners>
-        <listener class="com.github.btnewton.intellijdevplugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.openapi.command.CommandListener"/>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.execution.RunManagerListener"/>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.codeInsight.completion.CompletionPhaseListener"/>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.openapi.vcs.update.UpdatedFilesListener"/>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.problems.ProblemListener"/>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.xdebugger.XDebuggerManagerListener"/>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.task.ProjectTaskListener"/>
+        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.openapi.vcs.changes.committed.VcsConfigurationChangeListener"/>
     </projectListeners>
 </idea-plugin>
