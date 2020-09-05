@@ -1,6 +1,6 @@
 <idea-plugin>
-    <id>com.github.btnewton.intellijdevplugin</id>
-    <name>intellij-dev-plugin</name>
+    <id>com.github.btnewton.breakreminder</id>
+    <name>break-reminder</name>
     <vendor>btnewton</vendor>
 
     <!-- Product and plugin compatibility requirements -->
@@ -8,33 +8,33 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.btnewton.intellijdevplugin.services.WorkSessionService"/>
-        <applicationService serviceImplementation="com.github.btnewton.intellijdevplugin.services.AppSettingsState"/>
-        <applicationConfigurable parentId="tools" instance="com.github.btnewton.intellijdevplugin.services.AppSettingsConfigurable"
-                                 id="com.github.btnewton.intellijdevplugin.services.AppSettingsConfigurable"
+        <applicationService serviceImplementation="com.github.btnewton.breakreminder.services.WorkSessionService"/>
+        <applicationService serviceImplementation="com.github.btnewton.breakreminder.services.AppSettingsState"/>
+        <applicationConfigurable parentId="tools" instance="com.github.btnewton.breakreminder.services.AppSettingsConfigurable"
+                                 id="com.github.btnewton.breakreminder.services.AppSettingsConfigurable"
                                  displayName="Work Session"/>
     </extensions>
 
     <actions>
-        <action id="btnewton-dev-action" class="com.github.btnewton.intellijdevplugin.services.ResetWorkSessionAction" text="Work Session Restart"
+        <action id="btnewton-break-reminder-restart" class="com.github.btnewton.breakreminder.services.ResetWorkSessionAction" text="Work Session Restart"
                 description="Restart your work session">
         </action>
     </actions>
 
     <applicationListeners>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener"
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener"
                   topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
     </applicationListeners>
 
     <projectListeners>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.openapi.project.ProjectManagerListener"/>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.openapi.command.CommandListener"/>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.execution.RunManagerListener"/>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.codeInsight.completion.CompletionPhaseListener"/>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.openapi.vcs.update.UpdatedFilesListener"/>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.problems.ProblemListener"/>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.xdebugger.XDebuggerManagerListener"/>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.task.ProjectTaskListener"/>
-        <listener class="com.github.btnewton.intellijdevplugin.services.GenericIntelliJListener" topic="com.intellij.openapi.vcs.changes.committed.VcsConfigurationChangeListener"/>
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.openapi.command.CommandListener"/>
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.execution.RunManagerListener"/>
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.codeInsight.completion.CompletionPhaseListener"/>
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.openapi.vcs.update.UpdatedFilesListener"/>
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.problems.ProblemListener"/>
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.xdebugger.XDebuggerManagerListener"/>
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.task.ProjectTaskListener"/>
+        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.openapi.vcs.changes.committed.VcsConfigurationChangeListener"/>
     </projectListeners>
 </idea-plugin>

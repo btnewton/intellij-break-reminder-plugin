@@ -1,4 +1,4 @@
-package com.github.btnewton.intellijdevplugin.services
+package com.github.btnewton.breakreminder.services
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent

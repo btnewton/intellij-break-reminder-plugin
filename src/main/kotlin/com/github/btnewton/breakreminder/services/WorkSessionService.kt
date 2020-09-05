@@ -1,10 +1,9 @@
-package com.github.btnewton.intellijdevplugin.services
+package com.github.btnewton.breakreminder.services
 
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationDisplayType
 import com.intellij.notification.NotificationGroup
 import com.intellij.notification.NotificationType
-import com.intellij.openapi.Disposable
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.ui.DialogWrapper

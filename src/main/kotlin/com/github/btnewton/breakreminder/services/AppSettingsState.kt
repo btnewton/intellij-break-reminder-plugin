@@ -1,4 +1,4 @@
-package com.github.btnewton.intellijdevplugin.services
+package com.github.btnewton.breakreminder.services
 
 import com.intellij.openapi.components.*
 import com.intellij.openapi.options.Configurable

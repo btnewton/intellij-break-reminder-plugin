@@ -1,1 +1,1 @@
-rootProject.name = "intellij-dev-plugin"
+rootProject.name = "break-reminder"

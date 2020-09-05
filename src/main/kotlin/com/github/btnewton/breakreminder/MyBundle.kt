@@ -1,4 +1,4 @@
-package com.github.btnewton.intellijdevplugin
+package com.github.btnewton.breakreminder
 
 import com.intellij.AbstractBundle
 import org.jetbrains.annotations.NonNls
