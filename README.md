@@ -1,6 +1,6 @@
 # intellij-break-reminder-plugin
 
-Reminds you to take breaks every 45 minutes!
+Reminds you to take breaks every 45 minutes! Automatically detects you working so you don't have to remember to start a timer. Work session duration configurable.
 
 ![Build](https://github.com/btnewton/intellij-dev-plugin/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
