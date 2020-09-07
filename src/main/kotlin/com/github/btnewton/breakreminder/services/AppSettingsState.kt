@@ -8,6 +8,7 @@ import com.intellij.util.ui.FormBuilder
 import com.intellij.util.xmlb.XmlSerializerUtil
 import org.jetbrains.annotations.Nls
 import org.jetbrains.annotations.Nullable
+import java.time.Duration
 import javax.swing.JComponent
 import javax.swing.JPanel
 
@@ -18,6 +19,7 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState> {
     var workSessionTimeMinutes = 45
     var extensionTimeMinutes = 5
     var gracePeriodSeconds = 30
+    var inactivityTimeoutMinutes = 60
 
     @Nullable
     override fun getState(): AppSettingsState {
@@ -27,6 +29,12 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState> {
     override fun loadState(state: AppSettingsState) {
         XmlSerializerUtil.copyBean(state, this)
     }
+
+    fun breakDuration() = Duration.ofMinutes(breakDurationMinutes.toLong())
+    fun workSessionTime() = Duration.ofMinutes(workSessionTimeMinutes.toLong())
+    fun getExtensionTime(): Duration = Duration.ofMinutes(extensionTimeMinutes.toLong())
+    fun gracePeriod() = Duration.ofSeconds(gracePeriodSeconds.toLong())
+    fun inactivityTimeout() = Duration.ofMinutes(inactivityTimeoutMinutes.toLong())
 }
 
 

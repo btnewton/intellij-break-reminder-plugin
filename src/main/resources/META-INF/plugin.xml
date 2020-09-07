@@ -33,7 +33,6 @@
         <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.codeInsight.completion.CompletionPhaseListener"/>
         <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.openapi.vcs.update.UpdatedFilesListener"/>
         <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.problems.ProblemListener"/>
-        <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.xdebugger.XDebuggerManagerListener"/>
         <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.task.ProjectTaskListener"/>
         <listener class="com.github.btnewton.breakreminder.services.GenericIntelliJListener" topic="com.intellij.openapi.vcs.changes.committed.VcsConfigurationChangeListener"/>
     </projectListeners>

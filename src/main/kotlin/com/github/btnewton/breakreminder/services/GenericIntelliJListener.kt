@@ -22,7 +22,7 @@ import com.intellij.xdebugger.XDebuggerManagerListener
 import org.jetbrains.annotations.NotNull
 
 
-// nieve way of detecting any interation with IntelliJ
+// naive way of detecting any interactions with IntelliJ
 class GenericIntelliJListener : BulkFileListener, ToolWindowManagerListener,
 CommandListener,
         RunManagerListener,
