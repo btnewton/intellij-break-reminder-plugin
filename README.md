@@ -1,4 +1,4 @@
-# intellij-dev-plugin
+# intellij-break-reminder-plugin
 
 Reminds you to take breaks every 45 minutes!
 
