@@ -30,8 +30,8 @@ class TakeABreakDialog(private val workingState: WorkingState) : DialogWrapper(t
         val breakTime = DialogWrapperExitAction("Break time!", 0)
         breakTime.putValue(DEFAULT_ACTION, true)
         return arrayOf(
-                keepWorking,
-                breakTime
+            keepWorking,
+            breakTime
         )
     }
 

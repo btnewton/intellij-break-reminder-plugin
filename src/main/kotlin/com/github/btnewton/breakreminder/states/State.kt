@@ -60,7 +60,6 @@ class WorkDoneDecision(private val currentWork: WorkingState) : State("Work Done
 
     private var showDialogFlag = true
 
-
     override fun handleWorkDone(): State = this
 
     override fun tick(): State {
@@ -75,7 +74,7 @@ class WorkDoneDecision(private val currentWork: WorkingState) : State("Work Done
 
         return when (exitCode) {
             null -> this
-            DialogWrapper.OK_EXIT_CODE ->BreakState()
+            DialogWrapper.OK_EXIT_CODE -> BreakState()
             else -> {
                 val settings = service<AppSettingsState>()
                 SwingUtilities.invokeLater {
@@ -88,7 +87,7 @@ class WorkDoneDecision(private val currentWork: WorkingState) : State("Work Done
     }
 }
 
-class BreakState() : State("Break") {
+class BreakState : State("Break") {
     private val gracePeriodTimer = LazyTimer()
     private val breakTimer = LazyTimer()
 

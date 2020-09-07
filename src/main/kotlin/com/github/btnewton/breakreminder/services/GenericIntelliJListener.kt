@@ -4,26 +4,20 @@ import com.intellij.execution.RunManagerListener
 import com.intellij.execution.RunnerAndConfigurationSettings
 import com.intellij.openapi.components.service
 import com.intellij.openapi.vcs.changes.committed.VcsConfigurationChangeListener
-import com.intellij.openapi.vcs.update.UpdatedFilesListener
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.newvfs.BulkFileListener
 import com.intellij.openapi.vfs.newvfs.events.VFileEvent
-import com.intellij.openapi.wm.ToolWindow
-import com.intellij.openapi.wm.ex.ToolWindowManagerListener
 import com.intellij.problems.ProblemListener
 import com.intellij.task.ProjectTaskListener
-import com.intellij.task.ProjectTaskManager
 import org.jetbrains.annotations.NotNull
 
-
 // naive way of detecting any interactions with IntelliJ
-class GenericIntelliJListener : BulkFileListener,
-        RunManagerListener,
-        ProblemListener,
-        ProjectTaskListener,
-        VcsConfigurationChangeListener
-
-{
+class GenericIntelliJListener :
+    BulkFileListener,
+    RunManagerListener,
+    ProblemListener,
+    ProjectTaskListener,
+    VcsConfigurationChangeListener {
     override fun after(@NotNull events: List<VFileEvent?>) = workDone("VFS Event")
 
     override fun runConfigurationChanged(settings: RunnerAndConfigurationSettings) = workDone("Run Config Event")

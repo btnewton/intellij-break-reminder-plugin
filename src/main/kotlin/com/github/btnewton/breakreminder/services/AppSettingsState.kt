@@ -12,7 +12,6 @@ import java.time.Duration
 import javax.swing.JComponent
 import javax.swing.JPanel
 
-
 @State(name = "com.github.btnewton.intellijdevplugin.services.AppSettingsState", storages = [Storage("SdkSettingsPlugin.xml")])
 class AppSettingsState : PersistentStateComponent<AppSettingsState> {
     var breakDurationMinutes = 15
@@ -36,7 +35,6 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState> {
     fun gracePeriod() = Duration.ofSeconds(gracePeriodSeconds.toLong())
     fun inactivityTimeout() = Duration.ofMinutes(inactivityTimeoutMinutes.toLong())
 }
-
 
 /**
  * Supports creating and managing a JPanel for the Settings Dialog.
@@ -74,15 +72,14 @@ class AppSettingsComponent {
 
     init {
         panel = FormBuilder.createFormBuilder()
-                .addLabeledComponent(JBLabel("Break Duration Minutes: "), _breakDurationMinutesText, 1, false)
-                .addLabeledComponent(JBLabel("Work Duration Minutes: "), _workSessionTimeMinutesText, 1, false)
-                .addLabeledComponent(JBLabel("Grace Period Seconds: "), _gracePeriodSecondsText, 1, false)
-                .addLabeledComponent(JBLabel("Extension Minutes: "), _extensionTimeMinutesText, 1, false)
-                .addComponentFillVertically(JPanel(), 0)
-                .panel
+            .addLabeledComponent(JBLabel("Break Duration Minutes: "), _breakDurationMinutesText, 1, false)
+            .addLabeledComponent(JBLabel("Work Duration Minutes: "), _workSessionTimeMinutesText, 1, false)
+            .addLabeledComponent(JBLabel("Grace Period Seconds: "), _gracePeriodSecondsText, 1, false)
+            .addLabeledComponent(JBLabel("Extension Minutes: "), _extensionTimeMinutesText, 1, false)
+            .addComponentFillVertically(JPanel(), 0)
+            .panel
     }
 }
-
 
 /**
  * Provides controller functionality for application settings.
@@ -108,9 +105,9 @@ class AppSettingsConfigurable : Configurable {
     override fun isModified(): Boolean {
         val settings = service<AppSettingsState>()
         return (mySettingsComponent!!.breakDurationMinutesText != settings.breakDurationMinutes.toString()) or
-                (mySettingsComponent!!.workSessionTimeMinutesText != settings.workSessionTimeMinutes.toString()) or
-                (mySettingsComponent!!.extensionTimeMinutesText != settings.extensionTimeMinutes.toString()) or
-                (mySettingsComponent!!.gracePeriodSecondsText != settings.gracePeriodSeconds.toString())
+            (mySettingsComponent!!.workSessionTimeMinutesText != settings.workSessionTimeMinutes.toString()) or
+            (mySettingsComponent!!.extensionTimeMinutesText != settings.extensionTimeMinutes.toString()) or
+            (mySettingsComponent!!.gracePeriodSecondsText != settings.gracePeriodSeconds.toString())
     }
 
     override fun apply() {
