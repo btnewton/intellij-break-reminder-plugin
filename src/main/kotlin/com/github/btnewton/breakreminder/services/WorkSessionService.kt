@@ -71,8 +71,7 @@ class WorkSessionService : Disposable {
                     }
                 }
 
-                if (nextState != state)
-                    println("State changed from ${state.name} to ${nextState.name}")
+                if (nextState != state) println("State changed from ${state.name} to ${nextState.name}")
 
                 state = nextState
 

@@ -30,13 +30,9 @@ class WorkingState : State("Working") {
             }
         }
 
-        if (!inactivityTimer.isRunning())
-            resetInactivityTimer()
+        if (!inactivityTimer.isRunning()) resetInactivityTimer()
 
-        return if (inactivityTimer.isRunning() && inactivityTimer.isDone())
-            WaitingState
-        else
-            this
+        return if (inactivityTimer.isRunning() && inactivityTimer.isDone()) WaitingState else this
     }
 
     private fun resetInactivityTimer() {

@@ -1,6 +1,9 @@
 package com.github.btnewton.breakreminder.services
 
-import com.intellij.openapi.components.*
+import com.intellij.openapi.components.PersistentStateComponent
+import com.intellij.openapi.components.State
+import com.intellij.openapi.components.Storage
+import com.intellij.openapi.components.service
 import com.intellij.openapi.options.Configurable
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBTextField

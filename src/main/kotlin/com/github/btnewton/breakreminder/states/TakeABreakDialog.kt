@@ -11,11 +11,6 @@ import javax.swing.JLabel
 import javax.swing.JPanel
 
 class TakeABreakDialog(private val workingState: WorkingState) : DialogWrapper(true) {
-
-    companion object {
-        val EXTENSION_TIME_EXIT_CODE = 5
-    }
-
     override fun createCenterPanel(): JComponent? {
         val dialogPanel = JPanel(BorderLayout())
         val label = JLabel("You've been working for ${workingState.getMinutesWorked()} minutes. Take a break!")
@@ -29,10 +24,7 @@ class TakeABreakDialog(private val workingState: WorkingState) : DialogWrapper(t
         val keepWorking = DialogWrapperExitAction("${settings.extensionTimeMinutes} more minutes", 5)
         val breakTime = DialogWrapperExitAction("Break time!", 0)
         breakTime.putValue(DEFAULT_ACTION, true)
-        return arrayOf(
-            keepWorking,
-            breakTime
-        )
+        return arrayOf(keepWorking, breakTime)
     }
 
     init {
